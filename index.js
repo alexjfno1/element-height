@@ -1,5 +1,3 @@
-var ElementHeight = function(domElement) {
-  return 10;
-}
+var ElementHeight = require('./ElementHeight');
 
 module.exports = ElementHeight;
