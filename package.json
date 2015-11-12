@@ -1,0 +1,15 @@
+{
+  "name": "element-height",
+  "version": "0.0.1",
+  "description": "Get DOM Element height even if it is hidden.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.3"
+  }
+}
