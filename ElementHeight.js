@@ -7,7 +7,8 @@ var ElementHeight = function(domElement) {
     throw('Element passed is not a HTMLElement!');
   }
 
-  var isHiddenElement = (domElement.style.display === "none");
+  var styles = getComputedStyle(domElement);
+  var isHiddenElement = (styles.display === "none" || parseInt(styles.maxHeight) === 0);
   var dimentions;
 
   if(isHiddenElement) {
@@ -22,8 +23,19 @@ var ElementHeight = function(domElement) {
 function getHiddenElementDimentions(element) {
   var clone = element.cloneNode(true);
   document.body.appendChild(clone);
-  clone.style.display = "block";
+
+  var styles = getComputedStyle(clone);
+  if(styles.display === "none")
+    clone.style.display = "block";
+
+  if(parseInt(styles.maxHeight) === 0)
+    clone.style.maxHeight = "none";
+
   var dimentions = clone.getBoundingClientRect();
   document.body.removeChild(clone);
   return dimentions;
+}
+
+if(typeof module === 'object' && module.exports) {
+  module.exports = ElementHeight;
 }

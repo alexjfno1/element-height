@@ -2,7 +2,7 @@
   "name": "element-height",
   "version": "0.0.1",
   "description": "Get DOM Element height even if it is hidden.",
-  "main": "index.js",
+  "main": "ElementHeight.js",
   "scripts": {
     "test": "open ./test/index.html"
   },

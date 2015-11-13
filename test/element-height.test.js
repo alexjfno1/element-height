@@ -20,14 +20,27 @@ describe('element-height', function() {
 
   describe('hidden element', function() {
     beforeEach(function() {
-      element = createElement(true);
+      element = createElement();
     });
 
-    it('returns the height of the element', function() {
+    it('returns the height of the element when display: none', function() {
+      element.style.display = "none";
+      expect(ElementHeight(element)).to.be.equal(18);
+    });
+
+    it('returns the height of the element when maxHeight: 0', function() {
+      element.style.maxHeight = "0";
+      expect(ElementHeight(element)).to.be.equal(18);
+    });
+
+    it('returns the height of the element when maxHeight: 0 && display: none', function() {
+      element.style.maxHeight = "0";
+      element.style.display = "none";
       expect(ElementHeight(element)).to.be.equal(18);
     });
 
     it('removes the clone element from the page', function() {
+      element.style.display = "none";
       ElementHeight(element);
       expect(document.getElementsByClassName('test-element').length).to.be.equal(1);
     });
@@ -44,8 +57,6 @@ function createElement(isHidden) {
   var element = document.createElement('div');
   element.innerHTML = "Test element";
   element.classList.add('test-element')
-  if(isHidden)
-    element.style.display = "none";
   document.body.appendChild(element);
   return element;
 }
